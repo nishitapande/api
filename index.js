@@ -11,9 +11,9 @@ env.config();
 connectDb();
 
 const app = express();
+app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use(express.json());
 
 app.get("/", (req, res, next) => {
   res.json({
