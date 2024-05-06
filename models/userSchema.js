@@ -15,7 +15,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "A user must have a password"],
   },
-  
+  courses: {
+    type: [mongoose.Schema.Types.ObjectId],
+    default: [],
+    ref: "Course",
+  },
 });
 userSchema.pre("save", async function () {
   //if (this.isModified(this.password)) return next();

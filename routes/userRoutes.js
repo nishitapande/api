@@ -2,10 +2,16 @@ const express = require("express");
 const cors = require("cors");
 const router = express.Router();
 const userMiddleware = require("../middlewares/userMiddleware");
-
+const authUtil = require("../util/authUtil");
 router.use(cors());
 
+router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
 router.post("/register", userMiddleware.createUser);
-router.post("/login",userMiddleware.loginUser);
+router.post("/login", userMiddleware.loginUser);
+router.put(
+  "/:userId/:courseId",
+  authUtil.protect,
+  userMiddleware.addCourseToUser
+);
 
 module.exports = router;
