@@ -3,6 +3,7 @@ const cors = require("cors");
 const router = express.Router();
 const userMiddleware = require("../middlewares/userMiddleware");
 const authUtil = require("../util/authUtil");
+
 router.use(
   cors({
     origin: ["http://localhost:3000"],
