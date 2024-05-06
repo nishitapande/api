@@ -5,7 +5,7 @@ const courseMiddleware = require("../middlewares/courseMiddleware");
 const authUtil = require("../util/authUtil");
 router.use(
   cors({
-    origin: ["http://127.0.0.1"],
+    origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
