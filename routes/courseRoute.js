@@ -6,6 +6,7 @@ const authUtil = require("../util/authUtil");
 router.use(cors());
 
 router.get("/", courseMiddleware.getAllCourses);
+router.get("/:id", courseMiddleware.getCourseById);
 router.post("/create-course", authUtil.protect, courseMiddleware.createCourse);
 
 module.exports = router;

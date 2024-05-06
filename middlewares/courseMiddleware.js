@@ -9,6 +9,16 @@ exports.getAllCourses = async (req, res, next) => {
   }
 };
 
+exports.getCourseById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const course = await Course.findById(id);
+    res.status(200).json(course);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 exports.createCourse = async (req, res, next) => {
   const {
     name,
