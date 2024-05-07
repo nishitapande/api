@@ -29,6 +29,7 @@ exports.protect = async (req, res, next) => {
 
     if (user) {
       req.user = user;
+      req.decoded = res.locals.id;
       next();
     } else {
       return res.status(401).json({ error: "Unauthorized - user not found" });

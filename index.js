@@ -15,22 +15,12 @@ app.use(cookieParser());
 
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:3000",
-  "https://courses-api-production.up.railway.app",
-];
+//const allowedOrigins = "http://localhost:3000";
 
 // Middleware to enable CORS with specific origins
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // Check if the origin is in the allowedOrigins array
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true); // Allow the request
-      } else {
-        callback(new Error("Not allowed by CORS")); // Deny the request
-      }
-    },
+    origin: "http://localhost:3000",
     credentials: true, // Allow credentials (cookies) to be sent and received
   })
 );
