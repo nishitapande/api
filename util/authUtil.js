@@ -29,6 +29,7 @@ exports.protect = async (req, res, next) => {
 
     if (user) {
       req.user = user;
+      next(res.locals.id);
     } else {
       return res.status(401).json({ error: "Unauthorized - user not found" });
       //throw new Error("");
@@ -36,5 +37,4 @@ exports.protect = async (req, res, next) => {
   } else {
     return res.status(401).json({ error: "Unauthorized - token not found" });
   }
-  next();
 };
