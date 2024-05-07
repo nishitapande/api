@@ -39,7 +39,7 @@ exports.loginUser = async (req, res, next) => {
       expiresIn: "7d",
     });
     res.cookie("token", token, {
-      domain: "https://courses-api-production.up.railway.app", // Replace with your domain (if different from frontend)
+      domain: "/localhost", // Replace with your domain (if different from frontend)
       path: "/", // Set to '/' for access across all paths
       secure: true, // Set to true if your backend is served over HTTPS
       httpOnly: true, // Recommended for additional security
