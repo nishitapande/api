@@ -12,9 +12,13 @@ router.use(
   })
 );
 router.get("/", authUtil.protect, userMiddleware.getUser);
-router.get("/:userId/courses", userMiddleware.getUserCourses);
+router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
 router.post("/register", userMiddleware.createUser);
 router.post("/login", userMiddleware.loginUser);
-router.patch("/:userId/:courseId", userMiddleware.addCourseToUser);
+router.patch(
+  "/:userId/:courseId",
+  authUtil.protect,
+  userMiddleware.addCourseToUser
+);
 
 module.exports = router;
