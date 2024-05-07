@@ -12,7 +12,6 @@ router.use(
   })
 );
 router.get("/", authUtil.protect, userMiddleware.getUser);
-
 router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
 router.post("/register", userMiddleware.createUser);
 router.post("/login", userMiddleware.loginUser);
