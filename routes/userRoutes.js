@@ -13,6 +13,7 @@ router.use(
 );
 
 router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
+router.get("/user", authUtil.protect, userMiddleware.getUser);
 router.post("/register", userMiddleware.createUser);
 router.post("/login", userMiddleware.loginUser);
 router.put(
