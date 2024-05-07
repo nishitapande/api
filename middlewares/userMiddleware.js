@@ -100,10 +100,11 @@ exports.getUserCourses = async (req, res) => {
 
 exports.getUser = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const userId = res.locals.id;
+    //console.log(res.locals.id);
     const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json("User Found");
     }
     res.json(user);
   } catch (error) {
