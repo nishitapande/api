@@ -38,13 +38,7 @@ exports.loginUser = async (req, res, next) => {
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
-    res.cookie("token", token, {
-      domain: "/localhost", // Replace with your domain (if different from frontend)
-      path: "/", // Set to '/' for access across all paths
-      secure: true, // Set to true if your backend is served over HTTPS
-      httpOnly: true, // Recommended for additional security
-      sameSite: "Lax", // Consider security implications before using
-    });
+    res.cookie("token", token);
     res.status(200).json({
       message: "User logged in",
       id: user._id,

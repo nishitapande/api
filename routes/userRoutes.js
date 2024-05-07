@@ -6,22 +6,15 @@ const authUtil = require("../util/authUtil");
 
 router.use(
   cors({
-    origin: [
-      "http://localhost:3000",
-      "https://courses-api-production.up.railway.app",
-    ],
+    origin: ["http://localhost:3000"],
     methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
 );
 router.get("/", authUtil.protect, userMiddleware.getUser);
-router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
+router.get("/:userId/courses", userMiddleware.getUserCourses);
 router.post("/register", userMiddleware.createUser);
 router.post("/login", userMiddleware.loginUser);
-router.put(
-  "/:userId/:courseId",
-  authUtil.protect,
-  userMiddleware.addCourseToUser
-);
+router.patch("/:userId/:courseId", userMiddleware.addCourseToUser);
 
 module.exports = router;
