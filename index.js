@@ -11,6 +11,8 @@ env.config();
 connectDb();
 
 const app = express();
+app.use(cookieParser());
+
 app.use(express.json());
 app.use(
   cors({
@@ -19,7 +21,6 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser());
 
 app.get("/", (req, res, next) => {
   res.json({
