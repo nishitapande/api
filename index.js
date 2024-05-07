@@ -17,7 +17,7 @@ app.use(express.json());
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://courses-api-production.up.railway.app/",
+  "https://courses-api-production.up.railway.app",
 ];
 
 // Middleware to enable CORS with specific origins
