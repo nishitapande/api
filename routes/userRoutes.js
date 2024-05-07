@@ -6,7 +6,7 @@ const authUtil = require("../util/authUtil");
 
 router.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: true,
     methods: ["GET", "POST", "PUT"],
     credentials: true,
   })
