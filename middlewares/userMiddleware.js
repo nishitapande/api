@@ -104,7 +104,7 @@ exports.getUser = async (req, res, next) => {
     console.log(res.locals.id);
     const user = await User.findById(userId);
     if (!user) {
-      return res.status(404).json("User Found");
+      return res.status(404).json("User Not Found");
     }
     res.json(user);
   } catch (error) {

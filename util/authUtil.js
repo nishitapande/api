@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 exports.protect = async (req, res, next) => {
   let token;
   token = req.cookies.token;
-  console.log(token);
+  console.log("token:", token);
   if (token) {
     let decoded;
 
@@ -29,7 +29,7 @@ exports.protect = async (req, res, next) => {
 
     if (user) {
       req.user = user;
-      next(res.locals.id);
+      next();
     } else {
       return res.status(401).json({ error: "Unauthorized - user not found" });
       //throw new Error("");
