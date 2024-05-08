@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const connectDb = require("./config/dbConfig");
 const courseRoute = require("./routes/courseRoute");
 const userRoute = require("./routes/userRoutes");
-
+const corsMiddleware = require("./middlewares/corsMiddleware");
 env.config();
 
 connectDb();
@@ -18,6 +18,7 @@ app.use(express.json());
 //const allowedOrigins = "http://localhost:3000";
 
 // Middleware to enable CORS with specific origins
+app.use(corsMiddleware);
 app.use(
   cors({
     origin: "http://localhost:3000",

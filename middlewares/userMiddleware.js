@@ -30,8 +30,14 @@ exports.loginUser = async (req, res, next) => {
     if (!user) {
       return res.status(401).json({ message: "User Not Found" });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
-
+    // const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = () => {
+      if (password == user.password) {
+        return true;
+      } else {
+        return false;
+      }
+    };
     if (!isMatch) {
       return res.status(401).json({ message: "Wrong Password" });
     }
@@ -61,18 +67,30 @@ exports.addCourseToUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
+    // const course = await user.courses.find({ courseId });
+
+    // if (course) {
+    //   res.status(200).json(user, course);
+    // }
+
     // Check if the course already exists in the user's courses
     if (user.courses.includes(courseId)) {
       return res.status(400).json({ message: "Course already added to user" });
     }
 
-    // Add the course ID to the user's courses array
+    // // Add the course ID to the user's courses array
     user.courses.push(courseId);
 
-    // Save the updated user object
-    await user.save();
+    // User.findByIdAndUpdate(
+    //   userId, // First argument should be the ID of the user
+    //   { $push: { courses: courseId } }, // Second argument is the update operation
+    //   { new: true } // Options object, if you want to return the updated document
+    // );
+    // // Save the updated user object
+    user.save();
 
-    res.status(200).json({ message: "Course added successfully" });
+    // res.status(200).json({ message: "Course added successfully" });
+    res.status(200).json({ message: "Course added successfully", user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });

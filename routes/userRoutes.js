@@ -3,6 +3,7 @@ const cors = require("cors");
 const router = express.Router();
 const userMiddleware = require("../middlewares/userMiddleware");
 const authUtil = require("../util/authUtil");
+const corsMiddleware = require("../middlewares/corsMiddleware");
 
 router.use(
   cors({
@@ -11,12 +12,18 @@ router.use(
     credentials: true,
   })
 );
-router.get("/", authUtil.protect, userMiddleware.getUser);
-router.get("/:userId/courses", authUtil.protect, userMiddleware.getUserCourses);
-router.post("/register", userMiddleware.createUser);
-router.post("/login", userMiddleware.loginUser);
+router.get("/", corsMiddleware, authUtil.protect, userMiddleware.getUser);
+router.get(
+  "/:userId/courses",
+  corsMiddleware,
+  authUtil.protect,
+  userMiddleware.getUserCourses
+);
+router.post("/register", corsMiddleware, userMiddleware.createUser);
+router.post("/login", corsMiddleware, userMiddleware.loginUser);
 router.patch(
   "/:userId/:courseId",
+  corsMiddleware,
   authUtil.protect,
   userMiddleware.addCourseToUser
 );
